@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/marko-wordle-mk/static/css/main.545dd94a.css",
-    "main.js": "/marko-wordle-mk/static/js/main.b407b6f5.js",
+    "main.css": "/marko-wordle-mk/static/css/main.b33af7f5.css",
+    "main.js": "/marko-wordle-mk/static/js/main.519c49cc.js",
     "index.html": "/marko-wordle-mk/index.html",
-    "main.545dd94a.css.map": "/marko-wordle-mk/static/css/main.545dd94a.css.map",
-    "main.b407b6f5.js.map": "/marko-wordle-mk/static/js/main.b407b6f5.js.map"
+    "main.b33af7f5.css.map": "/marko-wordle-mk/static/css/main.b33af7f5.css.map",
+    "main.519c49cc.js.map": "/marko-wordle-mk/static/js/main.519c49cc.js.map"
   },
   "entrypoints": [
-    "static/css/main.545dd94a.css",
-    "static/js/main.b407b6f5.js"
+    "static/css/main.b33af7f5.css",
+    "static/js/main.519c49cc.js"
   ]
 }
