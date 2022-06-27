@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../styles/Row.css";
 
 const Row = ({ guess, isFinalGuess, solution }) => {
   const cells = [];
-
-  useEffect(() => {});
 
   for (let i = 0; i < 5; i++) {
     const letter = guess[i];
@@ -14,6 +12,18 @@ const Row = ({ guess, isFinalGuess, solution }) => {
       if (letter === solution[i]) {
         classNames += " correct";
       } else if (solution.includes(letter)) {
+        //check for duplicates
+        const solutionLetters = solution.split("");
+        solutionLetters.forEach((solutionLetter, j) => {
+          if (
+            letter === solutionLetter &&
+            i !== j &&
+            guess[j] === solution[j]
+          ) {
+            classNames += " incorrect";
+          }
+        });
+
         classNames += " other-position";
       } else classNames += " incorrect";
     }

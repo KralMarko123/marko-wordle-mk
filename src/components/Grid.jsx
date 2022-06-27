@@ -5,7 +5,7 @@ import * as myConstants from "../constants/words";
 import "../styles/Grid.css";
 
 const Grid = () => {
-  const [wordList, setWordList] = useState(myConstants.WORDS);
+  const wordList = myConstants.WORDS;
   const [solution, setSolution] = useState(
     wordList[Math.floor(Math.random() * wordList.length)]
   );
@@ -25,6 +25,10 @@ const Grid = () => {
 
       //general
       if (isGameOver) {
+        setModalMessage(
+          "Играта е завршена, рефреширајте ја страната за да почнете одново."
+        );
+        toggleModal();
         return;
       }
 
@@ -42,19 +46,14 @@ const Grid = () => {
           return;
         }
 
-        if (!wordList.includes(currentGuess)) {
-          setModalMessage("Зборот не се наоѓа во списокот на можни зборови.");
-          toggleModal();
-          return;
-        }
-
         const newGuesses = [...guesses];
         newGuesses[newGuesses.findIndex((el) => el === null)] = currentGuess;
+        const isFinalEntry = newGuesses.every((ел) => ел !== null);
         setGuesses(newGuesses);
         setCurrentGuess("");
 
         const isCorrect = currentGuess === solution;
-        if (isCorrect) {
+        if (isCorrect || isFinalEntry) {
           setIsGameOver(true);
         }
       }
