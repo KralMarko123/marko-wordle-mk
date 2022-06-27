@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/marko-wordle-mk/static/css/main.545dd94a.css",
+    "main.js": "/marko-wordle-mk/static/js/main.b407b6f5.js",
+    "index.html": "/marko-wordle-mk/index.html",
+    "main.545dd94a.css.map": "/marko-wordle-mk/static/css/main.545dd94a.css.map",
+    "main.b407b6f5.js.map": "/marko-wordle-mk/static/js/main.b407b6f5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.545dd94a.css",
+    "static/js/main.b407b6f5.js"
+  ]
+}
