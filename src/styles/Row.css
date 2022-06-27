@@ -24,14 +24,14 @@
 }
 
 .correct {
-  background-color: green;
+  background-color: var(--success);
   color: var(--light-main);
 }
 
 .other-position {
-  background-color: yellow;
+  background-color: var(--warning);
 }
 
 .incorrect {
-  background-color: red;
+  background-color: var(--danger);
 }

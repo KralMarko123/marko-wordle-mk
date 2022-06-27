@@ -5,12 +5,21 @@
   --light-main: rgb(220, 215, 201);
   --light-accent: rgb(162, 123, 92);
 
+  --success: green;
+  --warning: rgb(255, 159, 0);
+  --danger: rgb(226, 6, 44);
+
   /**WIDTHS, HEIGHTS, MARGINS, PADDINGS & GAPS*/
   --cell-width: 100px;
+  --card-width: 40%;
+
   --cell-height: 100px;
+  --card-height: 30%;
+
   --grid-gap: 2em;
 
   /**UTILITY*/
   --cell-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   --cell-border-radius: 10px;
+  --card-border-radius: 20px;
 }

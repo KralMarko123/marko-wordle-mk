@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Row from "./Row";
+import Modal from "./Modal";
 import * as myConstants from "../constants/words";
 import "../styles/Grid.css";
 
@@ -11,6 +12,12 @@ const Grid = () => {
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState("");
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  const toggleModal = () => {
+    setIsModalShown((prevState) => !prevState);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -30,13 +37,16 @@ const Grid = () => {
       //submit
       if (keyPressed === "enter") {
         if (currentGuess.length !== 5) {
+          setModalMessage("Зборот треба да е со 5 букви.");
+          toggleModal();
           return;
         }
 
-        //** doesn't really help the experience
-        // if (!wordList.includes(currentGuess)) {
-        //   return;
-        // }
+        if (!wordList.includes(currentGuess)) {
+          setModalMessage("Зборот не се наоѓа во списокот на можни зборови.");
+          toggleModal();
+          return;
+        }
 
         const newGuesses = [...guesses];
         newGuesses[newGuesses.findIndex((el) => el === null)] = currentGuess;
@@ -67,23 +77,29 @@ const Grid = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentGuess, guesses, isGameOver, solution]);
+  }, [currentGuess, guesses, isGameOver, solution, modalMessage]);
 
   return (
-    <section className="grid">
-      {guesses.map((guess, i) => {
-        const isCurrentGuess = i === guesses.findIndex((el) => el === null);
+    <>
+      <section className="grid">
+        {guesses.map((guess, i) => {
+          const isCurrentGuess = i === guesses.findIndex((el) => el === null);
 
-        return (
-          <Row
-            key={i}
-            guess={isCurrentGuess ? currentGuess : guess ?? ""}
-            isFinalGuess={!isCurrentGuess && guess !== null}
-            solution={solution}
-          />
-        );
-      })}
-    </section>
+          return (
+            <Row
+              key={i}
+              guess={isCurrentGuess ? currentGuess : guess ?? ""}
+              isFinalGuess={!isCurrentGuess && guess !== null}
+              solution={solution}
+            />
+          );
+        })}
+      </section>
+
+      {isModalShown === true ? (
+        <Modal message={modalMessage} modalHandler={toggleModal} />
+      ) : null}
+    </>
   );
 };
 
