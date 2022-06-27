@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  gap: var(--grid-gap);
+}
+
+.cell {
+  width: var(--cell-width);
+  height: var(--cell-height);
+
+  background-color: var(--light-main);
+  border-radius: var(--cell-border-radius);
+  box-shadow: var(--cell-shadow);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--dark-main);
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  transition: all 0.1s ease-in;
+}
+
+.correct {
+  background-color: green;
+  color: var(--light-main);
+}
+
+.other-position {
+  background-color: yellow;
+}
+
+.incorrect {
+  background-color: red;
+}
