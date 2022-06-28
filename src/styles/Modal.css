@@ -17,6 +17,7 @@
   background-color: var(--light-accent);
   border-radius: var(--card-border-radius);
   box-shadow: var(--cell-shadow);
+  padding: var(--card-padding);
 
   display: flex;
   flex-direction: column;

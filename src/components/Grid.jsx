@@ -15,8 +15,8 @@ const Grid = () => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  const toggleModal = () => {
-    setIsModalShown((prevState) => !prevState);
+  const closeModal = () => {
+    setIsModalShown(false);
   };
 
   useEffect(() => {
@@ -25,15 +25,16 @@ const Grid = () => {
 
       //general
       if (isGameOver) {
-        setModalMessage(
-          "Играта е завршена, рефреширајте ја страната за да почнете одново."
-        );
-        toggleModal();
         return;
       }
 
+      //modal close
+      if (keyPressed === "escape" && isModalShown === true) {
+        setIsModalShown(false);
+      }
+
       //backspace
-      if (keyPressed === "backspace") {
+      if (keyPressed === "backspace" && isModalShown === false) {
         setCurrentGuess(currentGuess.slice(0, -1));
         return;
       }
@@ -42,19 +43,27 @@ const Grid = () => {
       if (keyPressed === "enter") {
         if (currentGuess.length !== 5) {
           setModalMessage("Зборот треба да е со 5 букви.");
-          toggleModal();
+          setIsModalShown(true);
           return;
         }
 
         const newGuesses = [...guesses];
         newGuesses[newGuesses.findIndex((el) => el === null)] = currentGuess;
-        const isFinalEntry = newGuesses.every((ел) => ел !== null);
+        const isFinalEntry = newGuesses.every((el) => el !== null);
         setGuesses(newGuesses);
         setCurrentGuess("");
 
         const isCorrect = currentGuess === solution;
         if (isCorrect || isFinalEntry) {
           setIsGameOver(true);
+          isCorrect === true
+            ? setModalMessage(
+                `Браво! Го погодивте зборот '${solution}', за да добиете нов збор рефреширајте ја страната.`
+              )
+            : setModalMessage(
+                `Штета! Одговорот беше '${solution}', за да добиете нов збор рефреширајте ја страната.`
+              );
+          setIsModalShown(true);
         }
       }
 
@@ -66,7 +75,7 @@ const Grid = () => {
       //check if letter was pressed
       const isLetter = keyPressed.match(/^[a-z]{1}$/) !== null;
       const isCyrillicLetter = keyPressed.match(/^[\u0400-\u04FF]+$/) !== null;
-      if (isLetter || isCyrillicLetter) {
+      if ((isLetter || isCyrillicLetter) && isModalShown === false) {
         setCurrentGuess((oldGuess) => oldGuess + keyPressed);
       }
     };
@@ -76,7 +85,7 @@ const Grid = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentGuess, guesses, isGameOver, solution, modalMessage]);
+  }, [currentGuess, guesses, isGameOver, solution, isModalShown, modalMessage]);
 
   return (
     <>
@@ -96,7 +105,11 @@ const Grid = () => {
       </section>
 
       {isModalShown === true ? (
-        <Modal message={modalMessage} modalHandler={toggleModal} />
+        <Modal
+          message={modalMessage}
+          modalHandler={closeModal}
+          isGameOver={isGameOver}
+        />
       ) : null}
     </>
   );

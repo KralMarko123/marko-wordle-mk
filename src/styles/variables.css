@@ -16,6 +16,8 @@
   --cell-height: 100px;
   --card-height: 30%;
 
+  --card-padding: 1rem;
+
   --grid-gap: 2em;
 
   /**UTILITY*/
