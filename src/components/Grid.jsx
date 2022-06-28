@@ -6,9 +6,8 @@ import "../styles/Grid.css";
 
 const Grid = () => {
   const wordList = myConstants.WORDS;
-  const [solution, setSolution] = useState(
-    wordList[Math.floor(Math.random() * wordList.length)]
-  );
+  const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+  const [solution, setSolution] = useState(randomWord);
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState("");
   const [isGameOver, setIsGameOver] = useState(false);
@@ -29,8 +28,12 @@ const Grid = () => {
       }
 
       //modal close
-      if (keyPressed === "escape" && isModalShown === true) {
+      if (
+        (keyPressed === "escape" || keyPressed === "enter") &&
+        isModalShown === true
+      ) {
         setIsModalShown(false);
+        return;
       }
 
       //backspace
@@ -43,6 +46,12 @@ const Grid = () => {
       if (keyPressed === "enter") {
         if (currentGuess.length !== 5) {
           setModalMessage("Зборот треба да е со 5 букви.");
+          setIsModalShown(true);
+          return;
+        }
+
+        if (!wordList.includes(currentGuess)) {
+          setModalMessage("Зборот не се наоѓа во списокот на можни зборови.");
           setIsModalShown(true);
           return;
         }
