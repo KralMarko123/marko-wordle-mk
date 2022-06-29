@@ -8,24 +8,69 @@ const Keyboard = () => {
   const secondRowLetters = myConstants.SECOND_ROW_LETTERS;
   const thirdRowLetters = myConstants.THIRD_ROW_LETTERS;
 
+  const handleKeyboardPress = (e, letter) => {
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: letter }));
+
+    e.target.classList.add("clicked");
+
+    setTimeout(() => {
+      e.target.classList.remove("clicked");
+    }, 50);
+  };
+
   return (
     <section className="keyboard">
       <div className="keyboard-row">
-        {firstRowLetters.map((letter) => {
-          return <span className="keyboard-letter">{letter}</span>;
+        {firstRowLetters.map((letter, i) => {
+          return (
+            <span
+              key={i}
+              className="keyboard-letter"
+              onClick={(e) => handleKeyboardPress(e, letter)}
+            >
+              {letter}
+            </span>
+          );
         })}
       </div>
       <div className="keyboard-row">
-        {secondRowLetters.map((letter) => {
-          return <span className="keyboard-letter">{letter}</span>;
+        {secondRowLetters.map((letter, i) => {
+          return (
+            <span
+              key={i}
+              className="keyboard-letter"
+              onClick={(e) => handleKeyboardPress(e, letter)}
+            >
+              {letter}
+            </span>
+          );
         })}
       </div>
       <div className="keyboard-row">
-        <span className="keyboard-letter">Submit</span>
-        {thirdRowLetters.map((letter) => {
-          return <span className="keyboard-letter">{letter}</span>;
+        <span
+          className="keyboard-letter"
+          onClick={(e) => handleKeyboardPress(e, "enter")}
+        >
+          Внеси
+        </span>
+        {thirdRowLetters.map((letter, i) => {
+          return (
+            <span
+              key={i}
+              className="keyboard-letter"
+              onClick={(e) => handleKeyboardPress(e, letter)}
+            >
+              {letter}
+            </span>
+          );
         })}
-        <MdOutlineBackspace className="backspace" />
+
+        <span
+          className="keyboard-letter"
+          onClick={(e) => handleKeyboardPress(e, "backspace")}
+        >
+          <MdOutlineBackspace />
+        </span>
       </div>
     </section>
   );

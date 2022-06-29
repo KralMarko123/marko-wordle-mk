@@ -56,3 +56,13 @@
   color: var(--light-main);
   font-size: 2rem;
 }
+
+@media (max-width: 720px) {
+  .modal-toggle {
+    font-size: 1.25rem;
+  }
+
+  .modal-message {
+    font-size: 1.5rem;
+  }
+}

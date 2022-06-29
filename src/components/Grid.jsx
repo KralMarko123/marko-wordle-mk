@@ -102,6 +102,7 @@ const Grid = () => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
+
     window.addEventListener("resize", handleResize);
 
     return () => {

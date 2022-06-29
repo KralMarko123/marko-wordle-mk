@@ -32,16 +32,33 @@
 
 @media (max-width: 1279px) {
   :root {
-    /**WIDTHS, HEIGHTS, MARGINS, PADDINGS & GAPS*/
     --cell-width: 80px;
     --cell-height: 80px;
 
-    --card-width: 40%;
-    --card-height: 30%;
-
-    --card-padding: 1rem;
+    --card-width: 70%;
 
     --grid-gap: 1.5em;
-    --section-gap: 3em;
+  }
+}
+
+@media (max-width: 1279px) and (orientation: landscape) {
+  :root {
+    --cell-width: 65px;
+    --cell-height: 65px;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    /**WIDTHS, HEIGHTS, MARGINS, PADDINGS & GAPS*/
+    --cell-width: 50px;
+    --cell-height: 50px;
+
+    --card-width: 90%;
+    --card-padding: 0.5rem;
+
+    --grid-gap: 1em;
+    --keyboard-gap: 0.5em;
+    --section-gap: 2em;
   }
 }

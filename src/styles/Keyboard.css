@@ -9,15 +9,13 @@
 
 .keyboard-row {
   width: 100%;
-  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--keyboard-row-gap);
 }
 
-.keyboard-letter,
-.backspace {
+.keyboard-letter {
   max-width: fit-content;
   height: 50px;
   background-color: var(--light-accent);
@@ -33,9 +31,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: all 0.05s ease-in-out;
+  animation: enter 0.5s ease-in;
 }
 
-.backspace {
-  width: 60px;
-  fill: var(--light-main);
+.keyboard-letter:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .keyboard-row {
+    justify-content: space-between;
+    padding: 0 0.25em;
+  }
+
+  .keyboard-letter {
+    width: 100%;
+    max-width: 100%;
+    height: 60px;
+    padding: 0.25em;
+    font-size: 0.95rem;
+  }
+
+  .clicked {
+    opacity: 0.5;
+  }
+}
+
+@keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

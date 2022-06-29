@@ -42,6 +42,12 @@
   animation: fail 0.8s ease-in-out;
 }
 
+@media (max-width: 720px) {
+  .cell{
+    font-size: 2rem;
+  }
+}
+
 @keyframes success {
   0% {
     transform: translateX(0);
