@@ -1,0 +1,41 @@
+.keyboard {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--keyboard-gap);
+}
+
+.keyboard-row {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--keyboard-row-gap);
+}
+
+.keyboard-letter,
+.backspace {
+  max-width: fit-content;
+  height: 50px;
+  background-color: var(--light-accent);
+  padding: 0.5em 0.75em;
+
+  color: var(--light-main);
+  font-size: 1.35rem;
+  text-transform: uppercase;
+
+  border-radius: var(--letter-border-radius);
+  box-shadow: var(--cell-shadow);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backspace {
+  width: 60px;
+  fill: var(--light-main);
+}

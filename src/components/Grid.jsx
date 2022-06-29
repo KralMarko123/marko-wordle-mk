@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Row from "./Row";
 import Modal from "./Modal";
+import Keyboard from "./Keyboard";
 import * as myConstants from "../constants/words";
 import "../styles/Grid.css";
 
@@ -13,6 +14,7 @@ const Grid = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [windowWidth, setWidth] = useState(window.innerWidth);
 
   const closeModal = () => {
     setIsModalShown(false);
@@ -96,6 +98,17 @@ const Grid = () => {
     };
   }, [currentGuess, guesses, isGameOver, solution, isModalShown, modalMessage]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth]);
+
   return (
     <>
       <section className="grid">
@@ -112,6 +125,8 @@ const Grid = () => {
           );
         })}
       </section>
+
+      {windowWidth < 1280 ? <Keyboard /> : null}
 
       {isModalShown === true ? (
         <Modal
